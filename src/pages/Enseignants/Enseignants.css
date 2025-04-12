@@ -1,0 +1,36 @@
+.professeur-page header {
+    background-image: linear-gradient(rgba(5, 10, 35, 0.75), rgba(5, 10, 35, 0.75)), url(../../utils/images/enseignants-page-header.webp);
+    background-attachment: fixed;
+}
+.p-card {
+    text-align: center;
+    padding-bottom: 10px;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+}
+
+.p-info {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   gap: 8px;
+   text-align: center;
+   font-size: 14px;
+   margin-top: 10px;
+}
+  
+.p-role {
+   padding: 4px 8px;
+   border-radius: 10px;
+   background-color: #e2e2e2;
+}
+  
+.p-cover img {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    object-fit: cover;
+}

@@ -1,0 +1,127 @@
+#root {
+  text-align: center;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p, a, span, b, li{
+  font-family: 'Poppins', sans-serif;
+}
+header h1{
+  font-size: 4rem;
+  font-family: 'Poppins', sans-serif;
+}
+/* .navbar .nav-link{
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+.navbar .navbar-nav .nav-link:hover{
+    color: #FFD700 !important;
+} */
+
+.nav-link-custom {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .nav-link-custom:hover {
+    color: #FFD700; /* Or any hover color you like */
+  }
+  
+  .nav-link-custom.active {
+    color: #FFD700; /* Active link color */
+    font-weight: bold;
+  }
+  
+nav .navbar-toogler:focus{
+  box-shadow: none;
+}
+.scale-hover-effect{
+  transition: transform .5s ease;
+}
+.scale-hover-effect:hover{
+  transform: scale(1.05);
+}
+.footer-social-icons li:hover svg{
+  fill: #212529;
+}
+.footer-navigation li:hover{
+  fill: #212529;
+}
+.no-underline {
+  text-decoration: none;
+}
+.style-text{
+  font-family: 'Poppins', sans-serif;
+}
+.gauche-text h4{
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Footer section CSS */
+/* Pour assurer un meilleur contraste et lisibilité */
+.footer-link {
+  color: #333; 
+  font-weight: 600; 
+}
+
+.footer-link:hover {
+  color: #0056b3; 
+}
+
+/* Assurez-vous que le fond du footer est sombre si nécessaire */
+footer.bg-light.py-5 {
+  background-color: #f1f1f1; /* Plus sombre si besoin */
+}
+
+
+
+@media only screen and (max-width: 992px) {
+ #basic-navbar-nav {
+    width: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 2;
+  }
+ .navbar .nav-link {
+    color: #212529 !important;
+    transition: color 0.3s ease-in-out !important;
+ }
+
+ .navbar .nav-link:hover {
+    color: #085E83 !important;
+    text-decoration: underline !important;
+ }
+ .footer-navigation {
+  text-align: center !important; 
+}
+
+.footer-navigation li, h2 {
+  display: flex;
+  justify-content: center; 
+}
+}
+
+@media only screen and (max-width: 768px) {
+  header h1{
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  header h1{
+    font-size: 2rem;
+  }
+}
+
+

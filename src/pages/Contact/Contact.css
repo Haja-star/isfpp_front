@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial&display=swap');
+
+.contact-page header {
+    background-image: linear-gradient(rgba(5, 10, 35, 0.75), rgba(5, 10, 35, 0.75)), url(../../utils/images/contact-page-header.webp);
+    margin-bottom: 30px;
+
+    background-attachment: fixed;
+}
+
+.title_h1 h1{
+    font-size: 40px;
+    justify-content: center;
+}
+
+
+
+#contact-form label,
+#contact-form input,
+#contact-form textarea,
+#contact-form select,
+#contact-form button,
+#contact-form option {
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-label {
+    display: block;
+    text-align: left;
+}
+
+.text-muted {
+    font-family: 'Poppins', sans-serif;
+}
+
+.img-fluid {
+    border-radius: 25px;
+    transition: filter 0.5s ease-in-out;
+}
+
+#contact-form .form-control:focus,
+#contact-form .form-select:focus {
+    border-color: #085E83;
+}
+
+@media only screen and (max-width: 992px) {
+    #contact-form {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    #contact-form {
+        width: 100%;
+    }
+}

@@ -1,0 +1,27 @@
+.faq-section p,
+.accordion {
+    width: 75%;
+}
+
+.accordion-body {
+    font-family: "Poppins", sans-serif;
+    text-align: justify;
+}
+.accordion .accordion-button:focus,
+.accordion .accordion-button:not(.collapsed) {
+    box-shadow: none;
+}
+.accordion .accordion-button:not(.collapsed) {
+    background-color: #085E83;
+    color: #ffffff;
+}
+.accordion .accordion-button:not(.collapsed)::after {
+    filter: invert();
+}
+
+@media only screen and (max-width:992px) {
+    .faq-section p,
+.accordion {
+    width: 100%;
+}
+}
