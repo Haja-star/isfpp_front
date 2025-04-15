@@ -26,15 +26,14 @@ header h1{
     color: white;
     text-transform: uppercase;
     transition: color 0.3s ease;
-    font-weight: 500;
   }
   
   .nav-link-custom:hover {
-    color: #FFD700; /* Or any hover color you like */
+    color: #559fff; /* Or any hover color you like */
   }
   
   .nav-link-custom.active {
-    color: #FFD700; /* Active link color */
+    color: white; /* Active link color */
     font-weight: bold;
   }
   

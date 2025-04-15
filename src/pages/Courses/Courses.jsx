@@ -16,7 +16,7 @@ const courses = [
   {
     id: 1,
     img: [ArtCourseImg],
-    title: "Management et Administration d’Entreprise",
+    title: "Managements et Administration d’Entreprise",
     description:
       "Cette formation prépare les étudiants à gérer et administrer une entreprise ou une organisation. Elle couvre des domaines tels que la gestion des ressources humaines, la stratégie d-entreprise, la finance, le marketing, et la gestion des opérations.",
   },
