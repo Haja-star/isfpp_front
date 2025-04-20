@@ -25,6 +25,7 @@ const formatDate = (dateString) => {
 };
 
 const fetchBlogs = async () => {
+
   const res = await fetch(API_URL);
   if (!res.ok) {
     throw new Error("Erreur lors de la récupération des blogs");
@@ -92,13 +93,14 @@ const Home = () => {
 
   useEffect(() => {
     if (blogs.length === 3) {
-      setSliderSettings((prev) => ({ ...prev, slidesToShow: 3, autoplay: false , infinite: false}));
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 3, autoplay: false, infinite: false,}));
     } else if (blogs.length === 2) {
-      setSliderSettings((prev) => ({ ...prev, slidesToShow: 2, autoplay: false , infinite: false}));
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 2, autoplay: false, infinite: false,centerMode: true, centerPadding: "15%" }));
     } else if (blogs.length === 1) {
-      setSliderSettings((prev) => ({ ...prev, slidesToShow: 1, autoplay: false , infinite: false}));
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 1, autoplay: false, infinite: false, centerMode: true, centerPadding: "30%", }));
     }
   }, [blogs]);
+  console.log("blogs", blogs);
 
   useEffect(() => {
     fetch("https://backend.isfpp.com/director")
@@ -119,13 +121,13 @@ const Home = () => {
     );
   }
 
-  if (isError) {
-    return (
-      <div className="text-center text-danger my-5">
-        Erreur : {error.message}
-      </div>
-    );
-  }
+  // if (isError) {
+  //   return (
+  //     <div className="text-center text-danger my-5">
+  //       Erreur : {error.message}
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="home-page">
