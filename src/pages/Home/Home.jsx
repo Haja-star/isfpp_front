@@ -27,7 +27,7 @@ const formatDate = (dateString) => {
   return `${day} ${month} ${year}`;
 };
 
-const fetchBlogs = async () => {
+const fetchBlogs = async () => { 
   const res = await fetch(API_URL);
   if (!res.ok) {
     throw new Error("Erreur lors de la récupération des blogs");
@@ -36,6 +36,7 @@ const fetchBlogs = async () => {
 };
 
 const Home = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderSettings, setSliderSettings] = useState({
     dots: true,
     infinite: true,
@@ -54,6 +55,38 @@ const Home = () => {
     ],
   });
 
+  const customPaging = (i) => {
+    const isActive = i === currentSlide;
+    return <button>{ isActive && (i + 1) }</button>;
+  }
+  const appendDots = (dots) => {
+    const total = dots.length;
+    const visibleDots = [];
+  
+    if (total <= 7) return <ul>{dots}</ul>;
+  
+    // Always include the first dot
+    visibleDots.push(dots[0]);
+  
+    // Ellipses after first dot
+    if (currentSlide > 3) visibleDots.push(<li key="start-ellipsis elipses">...</li>);
+  
+    // Dots around the current slide
+    for (let i = currentSlide - 2; i <= currentSlide + 2; i++) {
+      if (i > 0 && i < total - 1) {
+        visibleDots.push(dots[i]);
+      }
+    }
+  
+    // Ellipses before last dot
+    if (currentSlide < total - 4) visibleDots.push(<li key="end-ellipsis elipses">...</li>);
+  
+    // Always include the last dot
+    visibleDots.push(dots[total - 1]);
+  
+    return <ul>{visibleDots}</ul>;
+  }
+
   /*const [blogs, setBlogs] = useState([]);*/
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -69,6 +102,7 @@ const Home = () => {
   });
 
   useEffect(() => {
+    
     if (blogs && blogs.length === 3) {
       setSliderSettings(prevSettings => ({
         ...prevSettings,
@@ -76,7 +110,38 @@ const Home = () => {
         autoplay: false
       }));
     }
+    if (blogs && blogs.length === 2) {
+      setSliderSettings(prevSettings => ({
+        ...prevSettings,
+        slidesToShow: 2,
+        autoplay: false
+      }));
+    }
+    if (blogs && blogs.length == 1) {
+      setSliderSettings(prevSettings => ({
+        ...prevSettings,
+        slidesToShow: 1,
+        autoplay: false
+      }));
+    }
+   
+
   }, [blogs]);
+
+
+//   else{
+//     const totalBlogs = blogs.length;
+//     const targetDots = Math.max(1, Math.ceil(totalBlogs * 0.2)); // 20% of total blogs
+//     const slidesToScroll = Math.ceil(totalBlogs / targetDots);
+
+//     setSliderSettings((prevSettings) => ({
+//       ...prevSettings,
+//       slidesToShow: 4,
+//       slidesToScroll,
+//       dots: true,
+//       autoplay: true,
+//     }));
+// }
   
   const handleVoirPlus = () => {
     setLoading(true);
@@ -218,7 +283,14 @@ const Home = () => {
              className="position-relative w-100"
              style={{ maxWidth: "2000px" }}
            >
-             <Slider {...sliderSettings} data-aos="fade-up">
+
+  {/* <Slider {...sliderSettings} beforeChange={(oldIndex, newIndex) => setCurrentSlide(newIndex)}>
+    {items.map((item, index) => (
+      <div key={index}>{item}</div>
+    ))}
+  </Slider> */}
+
+             <Slider {...sliderSettings} data-aos="fade-up" beforeChange={(oldIndex, newIndex) => setCurrentSlide(newIndex)}  customPaging={customPaging} appendDots={appendDots}>
                {blogs.map((blog, index) => {
                  const isNew =
                    new Date(blog.date) >

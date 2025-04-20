@@ -110,44 +110,34 @@ function App() {
             />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto justify-content-end w-100">
-                <div className="d-flex gap-3">
+                <div className="d-flex flex-column flex-lg-row gap-3 align-items-center">
                   <NavLink
                     to="/"
-                    className={({ isActive }) =>
-                      `nav-link-custom ${isActive ? "active" : ""}`
-                    }
+                    className="nav-link-custom"
                   >
                     Page d'accueil
                   </NavLink>
                   <NavLink
                     to="/courses"
-                    className={({ isActive }) =>
-                      `nav-link-custom ${isActive ? "active" : ""}`
-                    }
+                    className="nav-link-custom"
                   >
                     Nos Formations
                   </NavLink>
                   <NavLink
                     to="/enseignants"
-                    className={({ isActive }) =>
-                      `nav-link-custom ${isActive ? "active" : ""}`
-                    }
+                    className="nav-link-custom"
                   >
                     Nos Enseignants
                   </NavLink>
                   <NavLink
                     to="/about"
-                    className={({ isActive }) =>
-                      `nav-link-custom ${isActive ? "active" : ""}`
-                    }
+                    className="nav-link-custom"
                   >
                     À Propos
                   </NavLink>
                   <NavLink
                     to="/contact"
-                    className={({ isActive }) =>
-                      `nav-link-custom ${isActive ? "active" : ""}`
-                    }
+                    className="nav-link-custom"
                   >
                     Entrer en Contact
                   </NavLink>

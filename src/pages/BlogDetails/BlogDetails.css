@@ -127,6 +127,9 @@
     .article-thumbnail {
         margin-bottom: 10px;
     }
+    .article-title{
+        text-align: center;
+    }
 }
 
 /* Réactivité pour les écrans de taille 358px */

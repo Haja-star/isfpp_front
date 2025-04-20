@@ -160,4 +160,65 @@ header{
     text-overflow: ellipsis;
     max-height: 3em; /* Adjust based on your line height */
   }
+
   
+  .slick-dots {
+    margin-top: 20px;
+    bottom: -35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+  .slick-dots li {
+    height: 24px;
+    width: 24px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+ /* Style all dots */
+.slick-dots li button {
+    background-color: gray; /* color for inactive dots */
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    margin-top: 0;
+}
+  
+  /* Override the style for the active dot */
+  .slick-dots li.slick-active button {
+    background-color: #ffff; /* color for active dot */
+    color: #252525; /* color for active dot */
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.slick-dots li.slick-active button .active-dot {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+
+
+/* Override the style for the active dot */
+.slick-dots li button:before {
+  height: 0;
+  width: 0;
+  content: "";
+}
+
+
+  @media (max-width: 767.98px) {
+    .slick-prev::before,
+    .slick-next::before {
+      display: none;
+    }
+  }

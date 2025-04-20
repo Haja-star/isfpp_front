@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef , useLayoutEffect} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../../pages/Spinner/Spinner";
 import { Helmet } from "react-helmet";
@@ -23,6 +23,7 @@ function BlogDetails() {
   const [cardHeight, setCardHeight] = useState("520px");
   const leftColumnRef = useRef(null);
   const rightColumnRef = useRef(null);
+  const [isPageReady, setIsPageReady] = useState(false);
 
   useEffect(() => {
     // Récupération du blog spécifique
@@ -38,48 +39,41 @@ function BlogDetails() {
       .catch((error) => console.error("Erreur API blogs récents :", error));
   }, [id]);
 
-  useEffect(() => {
-    const section = document.getElementById("details-content");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
+  // useEffect(() => {
+  //   const section = document.getElementById("details-content");
+  //   if (section) {
+  //     section.scrollIntoView({ behavior: "auto" });
+  //   }
+  // }, []);
 
-  // Effect to adjust the card height based on left column height
-  useEffect(() => {
-    if (!blog) return;
+  //   // Effect to adjust the card height based on left column height
+  //   useEffect(() => {
+  //     if (!blog) return;
 
-    // Function to update the card height
-    const updateCardHeight = () => {
-      if (leftColumnRef.current && rightColumnRef.current) {
-        // Get the height of the left column
-        const leftColumnHeight = leftColumnRef.current.offsetHeight;
+  //     // Function to update the card height
+  //     const updateCardHeight = () => {
+  //       if (leftColumnRef.current && rightColumnRef.current) {
+  //         // Get the height of the left column
+  //         const leftColumnHeight = leftColumnRef.current.offsetHeight;
 
-        // Adjust for the header text in the right column (subtract its height)
-        const rightColumnHeaderHeight = 40; // Approximate height of the "Articles récents" heading
+  //         // Adjust for the header text in the right column (subtract its height)
+  //         const rightColumnHeaderHeight = 40; // Approximate height of the "Articles récents" heading
 
-        // Set the new height for the card body
-        const newHeight = leftColumnHeight - rightColumnHeaderHeight;
-        setCardHeight(`${newHeight}px`);
-      }
-    };
+  //         // Set the new height for the card body
+  //         const newHeight = leftColumnHeight - rightColumnHeaderHeight;
+  //         // setCardHeight(`${newHeight}px`);
+  //       }
+  //     };
 
-    // Update height initially after content loads
-    setTimeout(updateCardHeight, 100);
-
-    // Update on window resize
-    window.addEventListener("resize", updateCardHeight);
-
-    // Clean up event listener
-    return () => window.removeEventListener("resize", updateCardHeight);
-  }, [blog, recentBlogs]);
+  //     // Clean up event listener
+  //     return () => window.removeEventListener("resize", updateCardHeight);
+  //   }, [blog, recentBlogs]);
 
   //scrol directly to the section detail
   useEffect(() => {
     if (blog) {
       const section = document.getElementById("details-content");
-      const navbarHeight = 100; // Adjust this to your actual navbar height (in pixels)
-      
+      const navbarHeight = -30; // Adjust this to your actual navbar height (in pixels)
 
       if (section) {
         const y =
@@ -89,7 +83,7 @@ function BlogDetails() {
 
         window.scrollTo({
           top: y,
-          behavior: "smooth",
+          behavior: "auto",
         });
       }
     }
@@ -170,19 +164,20 @@ function BlogDetails() {
 
           {/* Articles récents (miniatures) */}
           <div className="col-md-4" ref={rightColumnRef}>
-            <h4 className="text-start ms-5">Articles récents</h4>
+            <h4 className="text-center text-md-start">Articles récents</h4>
             <div className="card border-0">
               <div
                 className="card-body"
-                style={{ height: cardHeight, overflowY: "auto" }}
+                style={{ height: cardHeight, overflowY: "auto", padding: 0 }}
               >
-                <ul className="list-unstyled ms-4">
+                <ul className="list-unstyled">
                   {recentBlogs.length > 0 ? (
                     recentBlogs.map((article) => (
                       <li
                         key={article.id}
                         onClick={() => navigate(`/blog/${article.id}`)}
                         className="d-flex align-items-center mb-3"
+                        style={{ cursor: "pointer" }}
                       >
                         <img
                           src={article.image}
@@ -196,7 +191,9 @@ function BlogDetails() {
                         />
                         <div className="ms-2 text-start d-flex flex-column gap-1 mt-1">
                           <strong className="text-truncate d-block">
-                            {article.title}
+                            {blog.title.length > 30
+                              ? `${blog.title.substring(0, 30)}...`
+                              : blog.title}
                           </strong>
                           <p
                             className="mb-0 text-truncate"
