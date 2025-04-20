@@ -175,150 +175,152 @@ function App() {
           <div className="container">
             <div className="row justify-content-between align-items-center">
               {/* Colonne gauche - Bouton de contact & Réseaux sociaux */}
-              <div className="col-md-4 text-center text-md-start">
-                <div className="gauche-text">
-                  <h2 className="display-10">Mentions légales</h2>
-                  <p>NIF: 2002 254 036</p>
-                  <p>STAT: 85 499 23 2016 0 001 78</p>
-                  <p>Arrêté d'habillitation N°32.794/2015 MEsupRES</p>
-                  <p>Vu l'Arrêté N° 17 446/2016 CNEAT du 04 Février 2016</p>
-                </div>
-                <Link to="/contact">
-                  <button
-                    // data-aos="fade-down"
-                    type="button"
-                    className="btn btn-lg mb-4"
-                    style={{
-                      color: "#0d47a1",
-                      borderColor: "#0d47a1",
-                      backgroundColor: "transparent",
-                    }}
-                  >
-                    Entrer en Contact
-                  </button>
-                </Link>
-              </div>
-              {/* Colonne droite - Navigation et contact */}
-              <div className="col-md-7 col-lg-6">
-                <div className="row justify-content-between">
-                  {/* Navigation */}
-                  <div className="col-md-6">
-                    <h2 className="text-left text-xl text-gray-800 mb-8 style-text">
-                      Navigation
-                    </h2>
-                    <ul className="footer-navigation list-unstyled text-start">
-                      <li className="mb-3">
-                        <Link
-                          to="/"
-                          className="footer-link text-dark no-underline"
-                        >
-                          Page d'accueil
-                        </Link>
-                      </li>
-                      <li className="mb-3">
-                        <Link
-                          to="/courses"
-                          className="footer-link text-dark no-underline"
-                        >
-                          Nos Formations
-                        </Link>
-                      </li>
-                      <li className="mb-3">
-                        <Link
-                          to="/enseignants"
-                          className="footer-link text-dark no-underline"
-                        >
-                          Nos Enseignants
-                        </Link>
-                      </li>
-                      <li className="mb-3">
-                        <Link
-                          to="/about"
-                          className="footer-link text-dark no-underline"
-                        >
-                          À Propos
-                        </Link>
-                      </li>
-                      <li className="mb-3">
-                        <Link
-                          to="/contact"
-                          className="footer-link text-dark no-underline"
-                        >
-                          Contact
-                        </Link>
-                      </li>
-                    </ul>
+              <div className="d-flex items-center justify-content-between ">
+                <div className="col-md-4 text-center text-md-start">
+                  <div className="gauche-text">
+                    <h2 className="">Mentions légales</h2>
+                    <p>NIF: 2002 254 036</p>
+                    <p>STAT: 85 499 23 2016 0 001 78</p>
+                    <p>Arrêté d'habillitation N°32.794/2015 MEsupRES</p>
+                    <p>Vu l'Arrêté N° 17 446/2016 CNEAT du 04 Février 2016</p>
                   </div>
+                  <Link to="/contact">
+                    <button
+                      // data-aos="fade-down"
+                      type="button"
+                      className="btn btn-lg mb-4"
+                      style={{
+                        color: "#0d47a1",
+                        borderColor: "#0d47a1",
+                        backgroundColor: "transparent",
+                      }}
+                    >
+                      Entrer en Contact
+                    </button>
+                  </Link>
+                </div>
+                {/* Colonne droite - Navigation et contact */}
+                <div className="col-md-7 col-lg-6">
+                  <div className="row justify-content-between">
+                    {/* Navigation */}
+                    <div className="col-md-6">
+                      <h2 className="text-left text-xl text-gray-800 mb-8 style-text">
+                        Navigation
+                      </h2>
+                      <ul className="footer-navigation list-unstyled text-start">
+                        <li className="mb-3">
+                          <Link
+                            to="/"
+                            className="footer-link text-dark no-underline"
+                          >
+                            Page d'accueil
+                          </Link>
+                        </li>
+                        <li className="mb-3">
+                          <Link
+                            to="/courses"
+                            className="footer-link text-dark no-underline"
+                          >
+                            Nos Formations
+                          </Link>
+                        </li>
+                        <li className="mb-3">
+                          <Link
+                            to="/enseignants"
+                            className="footer-link text-dark no-underline"
+                          >
+                            Nos Enseignants
+                          </Link>
+                        </li>
+                        <li className="mb-3">
+                          <Link
+                            to="/about"
+                            className="footer-link text-dark no-underline"
+                          >
+                            À Propos
+                          </Link>
+                        </li>
+                        <li className="mb-3">
+                          <Link
+                            to="/contact"
+                            className="footer-link text-dark no-underline"
+                          >
+                            Contact
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
 
-                  {/* Informations de contact */}
-                  <div className="col-md-6">
-                    <h2 className="text-left text-xl text-gray-800 mb-8 style-text">
-                      Contact
-                    </h2>
-                    <ul className="list-unstyled text-start">
-                      <li className="mb-3 d-flex align-items-center">
-                        <div
-                          style={{ backgroundColor: "#085E83" }}
-                          className="bg-opacity-85 p-3 rounded shadow-md me-2"
-                        >
-                          <FontAwesomeIcon
-                            icon={faMapMarkerAlt}
-                            className="text-light fs-5"
-                          />
-                        </div>
-                        Mahamasina vers Route IFIRP Befelatanana
-                      </li>
-                      <li className="mb-3 d-flex align-items-center">
-                        <div
-                          style={{ backgroundColor: "#085E83" }}
-                          className="bg-opacity-85  p-3 rounded shadow-md me-2"
-                        >
-                          <FontAwesomeIcon
-                            icon={faPhoneAlt}
-                            className=" text-light fs-5"
-                          />
-                        </div>
-                        +261 34 22 000 04
-                      </li>
-                      <li className="mb-3 d-flex align-items-center">
-                        <div
-                          style={{ backgroundColor: "#085E83" }}
-                          className="bg-opacity-85 p-3 rounded shadow-md me-2"
-                        >
-                          <FontAwesomeIcon
-                            icon={faEnvelope}
-                            className=" text-light fs-5"
-                          />
-                        </div>
-                        <a
-                          href="mailto:direction.isfpp@gmail.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-dark text-decoration-none"
-                        >
-                          direction.isfpp@gmail.com
-                        </a>
-                      </li>
-                      <li className="mb-3 d-flex align-items-center">
-                        <div
-                          style={{ backgroundColor: "#085E83" }}
-                          className="bg-opacity-85 p-3 rounded shadow-md me-2"
-                        >
-                          <FontAwesomeIcon
-                            icon={faFacebook}
-                            className="text-light fs-5"
-                          />
-                        </div>
-                        <a
-                          href="https://www.facebook.com/profile.php?id=100086873171877"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-dark text-decoration-none"
-                        >
-                          ISFPP Mada
-                        </a>
-                      </li>
-                    </ul>
+                    {/* Informations de contact */}
+                    <div className="col-md-6">
+                      <h2 className="text-left text-xl text-gray-800 mb-8 style-text">
+                        Contact
+                      </h2>
+                      <ul className="list-unstyled text-start">
+                        <li className="mb-3 d-flex align-items-center">
+                          <div
+                            style={{ backgroundColor: "#085E83" }}
+                            className="bg-opacity-85 p-3 rounded shadow-md me-2"
+                          >
+                            <FontAwesomeIcon
+                              icon={faMapMarkerAlt}
+                              className="text-light fs-5"
+                            />
+                          </div>
+                          Mahamasina vers Route IFIRP Befelatanana
+                        </li>
+                        <li className="mb-3 d-flex align-items-center">
+                          <div
+                            style={{ backgroundColor: "#085E83" }}
+                            className="bg-opacity-85  p-3 rounded shadow-md me-2"
+                          >
+                            <FontAwesomeIcon
+                              icon={faPhoneAlt}
+                              className=" text-light fs-5"
+                            />
+                          </div>
+                          +261 34 22 000 04
+                        </li>
+                        <li className="mb-3 d-flex align-items-center">
+                          <div
+                            style={{ backgroundColor: "#085E83" }}
+                            className="bg-opacity-85 p-3 rounded shadow-md me-2"
+                          >
+                            <FontAwesomeIcon
+                              icon={faEnvelope}
+                              className=" text-light fs-5"
+                            />
+                          </div>
+                          <a
+                            href="mailto:direction.isfpp@gmail.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-dark text-decoration-none"
+                          >
+                            direction.isfpp@gmail.com
+                          </a>
+                        </li>
+                        <li className="mb-3 d-flex align-items-center">
+                          <div
+                            style={{ backgroundColor: "#085E83" }}
+                            className="bg-opacity-85 p-3 rounded shadow-md me-2"
+                          >
+                            <FontAwesomeIcon
+                              icon={faFacebook}
+                              className="text-light fs-5"
+                            />
+                          </div>
+                          <a
+                            href="https://www.facebook.com/profile.php?id=100086873171877"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-dark text-decoration-none"
+                          >
+                            ISFPP Mada
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

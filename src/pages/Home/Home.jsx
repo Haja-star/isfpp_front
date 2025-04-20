@@ -2,20 +2,17 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import arrow from "../../assets/up-arrow.png";
-import ChooserSection from "../../components/ChooserSection/ChooserSection";
-import StartCoursesImg from "../../utils/isfpp/directeur.webp";
-import FaqAccordion from "../../components/FaqAccordion/FaqAccordion";
 import { Card, Button } from "react-bootstrap";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../../pages/Spinner/Spinner";
+import { HiArrowUp } from "react-icons/hi";
 
-import { HiArrowUp } from 'react-icons/hi';
+import ChooserSection from "../../components/ChooserSection/ChooserSection";
+import FaqAccordion from "../../components/FaqAccordion/FaqAccordion";
+import Spinner from "../../pages/Spinner/Spinner";
+import StartCoursesImg from "../../utils/isfpp/directeur.webp";
 
 const API_URL = "https://backend.isfpp.com/blog";
 
@@ -27,7 +24,7 @@ const formatDate = (dateString) => {
   return `${day} ${month} ${year}`;
 };
 
-const fetchBlogs = async () => { 
+const fetchBlogs = async () => {
   const res = await fetch(API_URL);
   if (!res.ok) {
     throw new Error("Erreur lors de la récupération des blogs");
@@ -57,39 +54,31 @@ const Home = () => {
 
   const customPaging = (i) => {
     const isActive = i === currentSlide;
-    return <button>{ isActive && (i + 1) }</button>;
-  }
+    return <button>{isActive && (i + 1)}</button>;
+  };
+
   const appendDots = (dots) => {
     const total = dots.length;
     const visibleDots = [];
-  
+
     if (total <= 7) return <ul>{dots}</ul>;
-  
-    // Always include the first dot
+
     visibleDots.push(dots[0]);
-  
-    // Ellipses after first dot
-    if (currentSlide > 3) visibleDots.push(<li key="start-ellipsis elipses">...</li>);
-  
-    // Dots around the current slide
+    if (currentSlide > 3) visibleDots.push(<li key="start-ellipsis">...</li>);
+
     for (let i = currentSlide - 2; i <= currentSlide + 2; i++) {
       if (i > 0 && i < total - 1) {
         visibleDots.push(dots[i]);
       }
     }
-  
-    // Ellipses before last dot
-    if (currentSlide < total - 4) visibleDots.push(<li key="end-ellipsis elipses">...</li>);
-  
-    // Always include the last dot
-    visibleDots.push(dots[total - 1]);
-  
-    return <ul>{visibleDots}</ul>;
-  }
 
-  /*const [blogs, setBlogs] = useState([]);*/
+    if (currentSlide < total - 4) visibleDots.push(<li key="end-ellipsis">...</li>);
+    visibleDots.push(dots[total - 1]);
+
+    return <ul>{visibleDots}</ul>;
+  };
+
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const {
     data: blogs = [],
@@ -102,66 +91,23 @@ const Home = () => {
   });
 
   useEffect(() => {
-    
-    if (blogs && blogs.length == 3) {
-      setSliderSettings(prevSettings => ({
-        ...prevSettings,
-        slidesToShow: 3,
-        autoplay: false
-      }));
+    if (blogs.length === 3) {
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 3, autoplay: false , infinite: false}));
+    } else if (blogs.length === 2) {
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 2, autoplay: false , infinite: false}));
+    } else if (blogs.length === 1) {
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 1, autoplay: false , infinite: false}));
     }
-    if (blogs && blogs.length === 2) {
-      setSliderSettings(prevSettings => ({
-        ...prevSettings,
-        slidesToShow: 2,
-        autoplay: false
-      }));
-    }
-    if (blogs && blogs.length == 1) {
-      setSliderSettings(prevSettings => ({
-        ...prevSettings,
-        slidesToShow: 1,
-        autoplay: false
-      }));
-    }
-   
-
   }, [blogs]);
 
-
-//   else{
-//     const totalBlogs = blogs.length;
-//     const targetDots = Math.max(1, Math.ceil(totalBlogs * 0.2)); // 20% of total blogs
-//     const slidesToScroll = Math.ceil(totalBlogs / targetDots);
-
-//     setSliderSettings((prevSettings) => ({
-//       ...prevSettings,
-//       slidesToShow: 4,
-//       slidesToScroll,
-//       dots: true,
-//       autoplay: true,
-//     }));
-// }
-  
-  const handleVoirPlus = () => {
-    setLoading(true);
-    setTimeout(() => {
-      navigate(`/blog/${blogs.id}`);
-    }, 1500); // Durée du spinner avant navigation
-  };
-
-  /* Récupération du mot du directeur */
   useEffect(() => {
     fetch("https://backend.isfpp.com/director")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Erreur lors de la récupération des données");
-        }
-        return response.json();
+
+      .then((res) => {
+        if (!res.ok) throw new Error("Erreur lors de la récupération des données");
+        return res.json();
       })
-      .then((data) => {
-        setMessage(data.director_word);
-      })
+      .then((data) => setMessage(data.director_word))
       .catch((error) => console.error("Erreur API :", error));
   }, []);
 
@@ -190,36 +136,22 @@ const Home = () => {
           content="Découvrez notre engagement à fournir des formations adaptées aux réalités du marché et dispensées par des experts."
         />
       </Helmet>
+
+      {/* Hero Section */}
       <header className="h-100 min-vh-100 d-flex align-items-center text-light mb-4">
         <div className="container d-flex flex-column align-items-center">
           <h2 data-aos="fade-down">Bienvenue à</h2>
-          <h1
-            data-aos="fade-left"
-            className="text-center fw-semibold display-1"
-          >
-            I.S.F.P.P{" "}
+          <h1 data-aos="fade-left" className="text-center fw-semibold display-1">
+            I.S.F.P.P
           </h1>
           <p data-aos="fade-up">
-            Notre mission est de former les leaders de demain, encourager la
-            curiosité intellectuelle et promouvoir une culture de collaboration
-            et d'inclusion. À I.S.F.P.P, les étudiants, les professeurs et les
-            anciens élèves forment un réseau mondial influent, dédié à
-            l'amélioration du bien-être de la société à travers l'apprentissage,
-            le service public et l'innovation.
+            Notre mission est de former les leaders de demain...
           </p>
           <div className="d-flex flex-column flex-sm-row align-items-center">
-            <a
-              href="/courses"
-              className="btn btn-custom btn-lg mx-2 my-2"
-              data-aos="fade-right"
-            >
+            <a href="/courses" className="btn btn-custom btn-lg mx-2 my-2" data-aos="fade-right">
               Voir nos formations
             </a>
-            <a
-              href="/contact"
-              className="btn btn-outline-light btn-lg mx-2 my-2"
-              data-aos="fade-left"
-            >
+            <a href="/contact" className="btn btn-outline-light btn-lg mx-2 my-2" data-aos="fade-left">
               Contactez-nous
             </a>
           </div>
@@ -230,127 +162,108 @@ const Home = () => {
         <ChooserSection />
       </div>
 
-      {/* Mot du directeur - Dynamique */}
+      {/* Mot du Directeur */}
       <div className="py-5 bg-light">
         <div className="container">
           <div className="row d-flex align-items-center justify-content-around">
             <div className="col-lg-5">
-              <h2 data-aos="zoom-in" className="text-left">
-                Mot de directeur I.S.F.P.P
-              </h2>
-              <p data-aos="zoom-in" className="text-justify">
-                {message}
-              </p>
+              <h2 data-aos="zoom-in">Mot du directeur I.S.F.P.P</h2>
+              <p data-aos="zoom-in">{message}</p>
             </div>
             <div className="col-lg-5 mt-5 mt-lg-0">
               <img
                 data-aos="fade-left"
                 src={StartCoursesImg}
                 className="img-fluid circular-image"
-                alt="Mot_de_directeur"
+                alt="Mot_du_directeur"
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Reste du contenu */}
       <div className="py-5">
         <FaqAccordion />
       </div>
 
-      {/* Bouton flottant pour ouvrir la fenêtre contextuelle */}
       <div
         className="floating-button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
-        <HiArrowUp style={{ color: 'white', fontSize: '24px' }} />
+        <HiArrowUp style={{ color: "white", fontSize: "24px" }} />
       </div>
-    
-    {blogs.length > 0 ? (
-         <div className="blog-section text-light py-5">
-         <div className="container d-flex flex-column align-items-center">
-           <h2
-             data-aos="fade-down"
-             className="text-center text-capitalize mb-3 fs-1"
-           >
-             Activités récents
-           </h2>
-           <p className="text-center mb-3">
-             Découvrez nos dernières actualités et événements marquants.
-           </p>
-           <div
-             className="position-relative w-100"
-             style={{ maxWidth: "2000px" }}
-           >
 
-  {/* <Slider {...sliderSettings} beforeChange={(oldIndex, newIndex) => setCurrentSlide(newIndex)}>
-    {items.map((item, index) => (
-      <div key={index}>{item}</div>
-    ))}
-  </Slider> */}
-
-             <Slider {...sliderSettings} data-aos="fade-up" beforeChange={(oldIndex, newIndex) => setCurrentSlide(newIndex)}  customPaging={customPaging} appendDots={appendDots}>
-               {blogs.map((blog, index) => {
-                 const isNew =
-                   new Date(blog.date) >
-                   new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-                 return (
-                   <div key={blog.id} className="px-3">
-                     <Card className="card shadow scale-hover-effect position-relative">
-                       {isNew && (
-                         <span className="badge bg-danger position-absolute top-0 end-0 m-2">
-                           Nouveauté
-                         </span>
-                       )}
-                       <Link to={`/blog/${blog.id}`}>
-                         <Card.Img
-                           className="card-img-top"
-                           variant="top"
-                           src={blog.image}
-                           alt="Card image"
-                           style={{ cursor: "pointer" }}
-                         />
-                       </Link>
-                       <Card.Body className="p-4 card-body-fixed">
-                         <Card.Title className="card-title-fixed two-line-ellipsis">
-                           {blog.title}
-                         </Card.Title>
-                         <Card.Text
-                           className="card-text-limited text-start two-line-ellipsis"
-                           title={blog.description}
-                         >
-                           {blog.description}
-                         </Card.Text>
-                         <div className="badge bg-light text-dark p-2 my-2 text-center">
-                           📅{" "}
-                           {blog.createdAt
-                             ? formatDate(blog.createdAt)
-                             : "Date non disponible"}
-                         </div>
-                         <Link to={`/blog/${blog.id}`} className="mt-auto">
-                           <Button
-                             className="btn-more"
-                             style={{
-                               backgroundColor: "#085E83",
-                               borderColor: "#0d47a1",
-                               color: "white",
-                             }}
-                           >
-                             Voir plus
-                           </Button>
-                         </Link>
-                       </Card.Body>
-                     </Card>
-                   </div>
-                 );
-               })}
-             </Slider>
-           </div>
-         </div>
-       </div>
-    ) : ""}
-     
+      {blogs.length > 0 && (
+        <div className="blog-section text-light py-5">
+          <div className="container d-flex flex-column align-items-center">
+            <h2 className="text-center text-capitalize mb-3 fs-1">Activités récents</h2>
+            <p className="text-center mb-3">
+              Découvrez nos dernières actualités et événements marquants.
+            </p>
+            <div className="position-relative w-100" style={{ maxWidth: "2000px" }}>
+              <Slider
+                {...sliderSettings}
+                data-aos="fade-up"
+                beforeChange={(oldIndex, newIndex) => setCurrentSlide(newIndex)}
+                customPaging={customPaging}
+                appendDots={appendDots}
+              >
+                {blogs.map((blog) => {
+                  const isNew =
+                    new Date(blog.date) >
+                    new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+                  return (
+                    <div key={blog.id} className="px-3">
+                      <Card className="card shadow scale-hover-effect position-relative">
+                        {isNew && (
+                          <span className="badge bg-danger position-absolute top-0 end-0 m-2">
+                            Nouveauté
+                          </span>
+                        )}
+                        <Link to={`/blog/${blog.id}`}>
+                          <Card.Img
+                            className="card-img-top"
+                            variant="top"
+                            src={blog.image}
+                            alt="Card image"
+                            style={{ cursor: "pointer" }}
+                          />
+                        </Link>
+                        <Card.Body className="p-4 card-body-fixed">
+                          <Card.Title className="card-title-fixed two-line-ellipsis">
+                            {blog.title}
+                          </Card.Title>
+                          <Card.Text
+                            className="card-text-limited text-start two-line-ellipsis"
+                            title={blog.description}
+                          >
+                            {blog.description}
+                          </Card.Text>
+                          <div className="badge bg-light text-dark p-2 my-2 text-center">
+                            📅 {blog.createdAt ? formatDate(blog.createdAt) : "Date non disponible"}
+                          </div>
+                          <Link to={`/blog/${blog.id}`} className="mt-auto">
+                            <Button
+                              className="btn-more"
+                              style={{
+                                backgroundColor: "#085E83",
+                                borderColor: "#0d47a1",
+                                color: "white",
+                              }}
+                            >
+                              Voir plus
+                            </Button>
+                          </Link>
+                        </Card.Body>
+                      </Card>
+                    </div>
+                  );
+                })}
+              </Slider>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
