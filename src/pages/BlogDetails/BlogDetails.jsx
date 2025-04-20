@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef , useLayoutEffect} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../../pages/Spinner/Spinner";
 import { Helmet } from "react-helmet";
-import arrow from "../../assets/up-arrow.png";
 import BlogBanner from "../../utils/images/blogs_details.webp";
 import ArticleLoader from "../../components/ArticleLoader/ArticleLoader";
 import { HiArrowUp } from "react-icons/hi";
@@ -20,60 +19,28 @@ function BlogDetails() {
   const navigate = useNavigate();
   const [blog, setBlog] = useState(null);
   const [recentBlogs, setRecentBlogs] = useState([]);
-  const [cardHeight, setCardHeight] = useState("520px");
+
   const leftColumnRef = useRef(null);
   const rightColumnRef = useRef(null);
-  const [isPageReady, setIsPageReady] = useState(false);
 
   useEffect(() => {
-    // Récupération du blog spécifique
+    // Fetch the specific blog post
     fetch(`https://backend.isfpp.com/blog/${id}`)
       .then((response) => response.json())
       .then((data) => setBlog(data))
       .catch((error) => console.error("Erreur API :", error));
 
-    // Récupération des blogs récents
+    // Fetch all recent blogs
     fetch(`https://backend.isfpp.com/blog`)
       .then((response) => response.json())
       .then((data) => setRecentBlogs(data))
       .catch((error) => console.error("Erreur API blogs récents :", error));
   }, [id]);
 
-  // useEffect(() => {
-  //   const section = document.getElementById("details-content");
-  //   if (section) {
-  //     section.scrollIntoView({ behavior: "auto" });
-  //   }
-  // }, []);
-
-  //   // Effect to adjust the card height based on left column height
-  //   useEffect(() => {
-  //     if (!blog) return;
-
-  //     // Function to update the card height
-  //     const updateCardHeight = () => {
-  //       if (leftColumnRef.current && rightColumnRef.current) {
-  //         // Get the height of the left column
-  //         const leftColumnHeight = leftColumnRef.current.offsetHeight;
-
-  //         // Adjust for the header text in the right column (subtract its height)
-  //         const rightColumnHeaderHeight = 40; // Approximate height of the "Articles récents" heading
-
-  //         // Set the new height for the card body
-  //         const newHeight = leftColumnHeight - rightColumnHeaderHeight;
-  //         // setCardHeight(`${newHeight}px`);
-  //       }
-  //     };
-
-  //     // Clean up event listener
-  //     return () => window.removeEventListener("resize", updateCardHeight);
-  //   }, [blog, recentBlogs]);
-
-  //scrol directly to the section detail
   useEffect(() => {
     if (blog) {
       const section = document.getElementById("details-content");
-      const navbarHeight = -30; // Adjust this to your actual navbar height (in pixels)
+      const navbarHeight = -30;
 
       if (section) {
         const y =
@@ -122,7 +89,7 @@ function BlogDetails() {
         </div>
       </header>
 
-      {/* Bouton flottant pour ouvrir la fenêtre contextuelle */}
+      {/* Scroll to top button */}
       <div
         className="floating-button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -130,19 +97,19 @@ function BlogDetails() {
         <HiArrowUp style={{ color: "white", fontSize: "24px" }} />
       </div>
 
-      {/* Conteneur flexbox pour afficher l'article sélectionné et les articles récents */}
+      {/* Blog content */}
       <div className="container mt-4" id="details-content">
         <div className="row">
-          {/* Article principal (image plus grande) */}
           <div className="text-center mb-3">
             <h2>Actualités</h2>
             <span>
               Restez connecté à l'actualité ! Découvrez nos dernières nouvelles,
               suivez les tendances du moment et explorez des sujets variés – de
-              la culture aux technologies – pour ne rien manquer de ce qui fait
-              bouger le monde.
+              la culture aux technologies – pour ne rien manquer.
             </span>
           </div>
+
+          {/* Main article */}
           <div className="col-md-8" ref={leftColumnRef}>
             <img
               src={blog.image}
@@ -151,7 +118,7 @@ function BlogDetails() {
               style={{ width: "100%", height: "400px", objectFit: "cover" }}
             />
             <div className="py-3 d-flex gap-2 text-start">
-              <div>Pulblié le, </div>
+              <div>Publié le</div>
               <strong>
                 {blog.createdAt
                   ? formatDate(blog.createdAt)
@@ -162,13 +129,13 @@ function BlogDetails() {
             <p className="text-justify">{blog.description}</p>
           </div>
 
-          {/* Articles récents (miniatures) */}
+          {/* Recent articles */}
           <div className="col-md-4" ref={rightColumnRef}>
             <h4 className="text-center text-md-start">Articles récents</h4>
             <div className="card border-0">
               <div
                 className="card-body"
-                style={{ height: cardHeight, overflowY: "auto", padding: 0 }}
+                style={{ maxHeight: "520px", overflowY: "auto", padding: 0 }}
               >
                 <ul className="list-unstyled">
                   {recentBlogs.length > 0 ? (
@@ -191,9 +158,9 @@ function BlogDetails() {
                         />
                         <div className="ms-2 text-start d-flex flex-column gap-1 mt-1">
                           <strong className="text-truncate d-block">
-                            {blog.title.length > 30
-                              ? `${blog.title.substring(0, 30)}...`
-                              : blog.title}
+                            {article.title.length > 30
+                              ? `${article.title.substring(0, 30)}...`
+                              : article.title}
                           </strong>
                           <p
                             className="mb-0 text-truncate"
