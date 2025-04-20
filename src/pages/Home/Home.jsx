@@ -100,7 +100,6 @@ const Home = () => {
       setSliderSettings((prev) => ({ ...prev, slidesToShow: 1, autoplay: false, infinite: false, centerMode: true, centerPadding: "36%", }));
     }
   }, [blogs]);
-  console.log("blogs", blogs);
 
   useEffect(() => {
     fetch("https://backend.isfpp.com/director")
