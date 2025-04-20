@@ -93,11 +93,11 @@ const Home = () => {
 
   useEffect(() => {
     if (blogs.length === 3) {
-      setSliderSettings((prev) => ({ ...prev, slidesToShow: 3, autoplay: false, infinite: false,}));
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 3, autoplay: false, infinite: false, centerMode: true, centerPadding: "6%" }));
     } else if (blogs.length === 2) {
-      setSliderSettings((prev) => ({ ...prev, slidesToShow: 2, autoplay: false, infinite: false,centerMode: true, centerPadding: "15%" }));
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 2, autoplay: false, infinite: false,centerMode: true, centerPadding: "22%" }));
     } else if (blogs.length === 1) {
-      setSliderSettings((prev) => ({ ...prev, slidesToShow: 1, autoplay: false, infinite: false, centerMode: true, centerPadding: "30%", }));
+      setSliderSettings((prev) => ({ ...prev, slidesToShow: 1, autoplay: false, infinite: false, centerMode: true, centerPadding: "36%", }));
     }
   }, [blogs]);
   console.log("blogs", blogs);
@@ -128,6 +128,7 @@ const Home = () => {
   //     </div>
   //   );
   // }
+  console.log("blogs", blogs)
 
   return (
     <div className="home-page">
