@@ -111,8 +111,8 @@ header{
   position: fixed;
   bottom: 20px; 
   right: 20px; 
-  width: 40px; 
-  height: 40px;
+  width: 60px; 
+  height: 60px;
   background-color: #085E83; 
   border-radius: 50%; 
   display: flex;
@@ -130,8 +130,8 @@ header{
 }
 
 .floating-button img {
-  width: 50%; 
-  height: auto;
+  width: 60%; 
+  height: 60%;
 }
   
   .slick-prev::before, .slick-next::before {

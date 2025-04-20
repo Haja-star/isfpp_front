@@ -103,7 +103,7 @@ const Home = () => {
 
   useEffect(() => {
     
-    if (blogs && blogs.length === 3) {
+    if (blogs && blogs.length == 3) {
       setSliderSettings(prevSettings => ({
         ...prevSettings,
         slidesToShow: 3,

@@ -27,11 +27,15 @@ header h1{
     text-transform: uppercase;
     display: flex;
     transition: color 0.3s ease;
-    font-weight: 500;
   }
   
   .nav-link-custom:hover {
-    color: #559fff;; /* Or any hover color you like */
+    color: #559fff; /* Or any hover color you like */
+  }
+  
+  .nav-link-custom.active {
+    color: white; /* Active link color */
+    font-weight: bold;
   }
   
 nav .navbar-toogler:focus{
