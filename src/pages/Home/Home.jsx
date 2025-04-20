@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Card, Button } from "react-bootstrap";
 import { useQuery } from "@tanstack/react-query";
 import { HiArrowUp } from "react-icons/hi";

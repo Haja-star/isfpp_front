@@ -1,6 +1,6 @@
 import React from 'react'
 import './FaqAccordion.css';
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet-async";
 import { Accordion } from 'react-bootstrap';
 
 const FaqAccordion = () => {

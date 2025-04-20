@@ -1,6 +1,6 @@
 import React from "react";
 import "./Enseignants.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import aos from "aos";
 import arrow from "../../assets/up-arrow.png";
 import Professeur1 from "../../utils/images/anonyme.webp";

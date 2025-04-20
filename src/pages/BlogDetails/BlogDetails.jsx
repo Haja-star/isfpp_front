@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../../pages/Spinner/Spinner";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import BlogBanner from "../../utils/images/blogs_details.webp";
 import ArticleLoader from "../../components/ArticleLoader/ArticleLoader";
 import { HiArrowUp } from "react-icons/hi";

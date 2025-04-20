@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Admin.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Activite from "../Activite/Activite";
 import Directeur from "../Directeur/Directeur";
 import { useNavigate } from "react-router-dom";

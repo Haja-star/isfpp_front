@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet-async";
 import Icon from './Icon'; // Importation du composant Icon
 
 const ChooserSection = () => {

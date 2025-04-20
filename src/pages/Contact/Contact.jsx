@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Contact.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import arrow from "../../assets/up-arrow.png";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";

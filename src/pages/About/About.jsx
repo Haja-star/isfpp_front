@@ -1,7 +1,7 @@
 import React from "react";
 import "./About.css";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import arrow from "../../assets/up-arrow.png";
 import AboutUsSectionImg from "../../utils/isfpp/sortie.webp";

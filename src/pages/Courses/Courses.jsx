@@ -1,7 +1,7 @@
 import React from "react";
 import "./Courses.css";
 import { Card } from "react-bootstrap";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { HiArrowUp } from "react-icons/hi";
 import ArtCourseImg from "../../utils/images/management_admin.webp";
 import BusinessCourseImg from "../../utils/images/compta_finance.webp";
