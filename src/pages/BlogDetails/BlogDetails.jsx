@@ -131,7 +131,7 @@ function BlogDetails() {
 
           {/* Recent articles */}
           <div className="col-md-4" ref={rightColumnRef}>
-            <h4 className="text-center text-md-start">Articles récents</h4>
+            <h4 className="text-start">Articles récents</h4>
             <div className="card border-0">
               <div
                 className="card-body"
