@@ -90,12 +90,17 @@ function BlogDetails() {
       </header>
 
       {/* Scroll to top button */}
-      <div
+      <button
         className="floating-button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Scroll to top"
+        style={{
+          border: "none",
+          cursor: "pointer",
+        }}
       >
         <HiArrowUp style={{ color: "white", fontSize: "24px" }} />
-      </div>
+      </button>
 
       {/* Blog content */}
       <div className="container mt-4" id="details-content">
@@ -135,8 +140,9 @@ function BlogDetails() {
             <div className="card border-0">
               <div
                 className="card-body"
-                style={{ maxHeight: "520px", overflowY: "auto", padding: 0 }}
+                style={{ maxHeight: "50.5vh", overflowY: "auto", padding: 0, }}
               >
+
                 <ul className="list-unstyled">
                   {recentBlogs.length > 0 ? (
                     recentBlogs.map((article) => (
@@ -178,7 +184,9 @@ function BlogDetails() {
                       </li>
                     ))
                   ) : (
-                    <ArticleLoader />
+                    <li>
+                      <ArticleLoader />
+                    </li>
                   )}
                 </ul>
               </div>
