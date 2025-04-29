@@ -205,9 +205,9 @@ function App() {
           <div className="container">
             <div className="row justify-content-between align-items-center">
               {/* Colonne gauche - Bouton de contact & Réseaux sociaux */}
-              <div className="col-md-4 text-center text-md-start mb-4">
+              <div className="col-md-4 text-center text-md-start mb-5">
                 <div className="gauche-text">
-                  <h2 className="display-10">Mentions légales</h2>
+                  <h2 className="text-left text-xl text-gray-800 style-text">Mentions légales</h2>
                   <p>NIF: 2002 254 036</p>
                   <p>STAT: 85 499 23 2016 0 001 78</p>
                   <p>Arrêté d'habillitation N°32.794/2015 MEsupRES</p>
@@ -233,7 +233,7 @@ function App() {
                 <div className="row justify-content-between">
                   {/* Navigation */}
                   <div className="col-md-6">
-                    <h2 className="text-left text-xl text-gray-800 mb-8 style-text">
+                    <h2 className="text-left text-xl text-gray-800 style-text">
                       Navigation
                     </h2>
                     <ul className="footer-navigation list-unstyled text-start">
@@ -284,7 +284,7 @@ function App() {
 
                   {/* Informations de contact */}
                   <div className="col-md-6">
-                    <h2 className="text-left text-xl text-gray-800 mb-8 style-text">
+                    <h2 className="text-left text-xl text-gray-800 style-text">
                       Contact
                     </h2>
                     <ul className="list-unstyled text-start">
