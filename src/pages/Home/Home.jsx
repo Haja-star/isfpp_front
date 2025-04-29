@@ -120,15 +120,6 @@ const Home = () => {
     );
   }
 
-  // if (isError) {
-  //   return (
-  //     <div className="text-center text-danger my-5">
-  //       Erreur : {error.message}
-  //     </div>
-  //   );
-  // }
-  console.log("blogs", blogs)
-
   return (
     <div className="home-page">
       <Helmet>
