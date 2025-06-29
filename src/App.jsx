@@ -151,13 +151,22 @@ function App() {
                   >
                     Nos Formations
                   </NavLink>
-                  <NavLink
+                  {/* <NavLink
                     to="/enseignants"
                     className="nav-link-custom"
                     onClick={() => setNavbarExpanded(false)}
                   >
                     Nos Enseignants
-                  </NavLink>
+                  </NavLink> */}
+                <NavLink
+                  to="#"
+                  className={({ isActive }) => "nav-link-custom disabled"}
+                >
+                  Nos Enseignants
+                </NavLink>
+
+
+
                   <NavLink
                     to="/about"
                     className="nav-link-custom"
